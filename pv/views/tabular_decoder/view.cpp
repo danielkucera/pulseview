@@ -109,14 +109,16 @@ void CustomFilterProxyModel::set_sample_range(uint64_t start_sample,
 	range_start_sample_ = start_sample;
 	range_end_sample_ = end_sample;
 
-	invalidateFilter();
+	beginFilterChange();
+	endFilterChange();
 }
 
 void CustomFilterProxyModel::enable_range_filtering(bool value)
 {
 	range_filtering_enabled_ = value;
 
-	invalidateFilter();
+	beginFilterChange();
+	endFilterChange();
 }
 
 
