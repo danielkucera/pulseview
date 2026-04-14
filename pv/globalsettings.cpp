@@ -213,7 +213,10 @@ void GlobalSettings::apply_theme()
 
 	if (!resource_name.isEmpty()) {
 		QFile file(resource_name);
-		file.open(QFile::ReadOnly | QFile::Text);
+		if (!file.open(QFile::ReadOnly | QFile::Text)) {
+			qDebug() << "Failed to resource file for reading";
+			return; 
+		}
 		qApp->setStyleSheet(file.readAll());
 	} else
 		qApp->setStyleSheet("");
